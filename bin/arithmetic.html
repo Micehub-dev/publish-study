@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        .num-1{font-size: 35px;}
+        .num-2{font-size: 35px; color: red;}
+
+    </style>
+</head>
+<body>
+    <div id="canvas"></div>
+    <ul>
+        <li>은빈</li>
+        <li>혜련</li>
+        <li>남경</li>
+    </ul>
+<script>
+
+$(function(){
+    console.log('hello jquery');
+    //console.trace();
+});
+
+var el = document.getElementById("canvas");
+var el = document.querySelector("#canvas");
+
+
+
+
+var a = 15;
+var b = 46;
+el.innerHTML ='<div class="num-1">'+(b % a)+'</div>';
+
+var num2 = document.createElement('div');
+num2.classList.add('num-2');
+num2.innerText = a;
+el.appendChild(num2);
+
+var ul = document.querySelectorAll('ul > li'); //nodelist 타입 innerHtml, innerText 속성이 없음
+console.log(ul);
+console.dir(ul);
+ul.innerHTML ="<li>승철</li>";
+ul.item(0).innerHTML ="<li>혜련 안녕하세요</li>";
+
+
+console.log(num2);
+console.dir(num2);
+
+
+// console.log(a+b);
+// console.log(b%a);
+
+// console.log(a++); //15
+// console.log(a); //16
+// console.log(++a);
+
+// console.log(b--); //46
+// console.log(b); //45
+// console.log(--b); //44
+
+
+</script>
+</body>
+</html>
