@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<style>
+.num-1 {font-size: 2rem;}
+.num-2 {font-size: 2rem; color: #00f;}
+</style>
+<body>
+    <div id="canvas"></div>
+<script>
+var el = document.getElementById("canvas");
+
+var a = 20;
+var b = 53;
+el.innerHTML = "<div class='num-1'>"+(b % a)+"</div>";
+
+var num2 = document.createElement("div");
+num2.classList.add("num-2");
+num2.innerHTML = a;
+el.appendCHild(num2);
+
+/*
+console.log(a + b);
+console.log(b % a);
+
+console.log(a++); // 20
+console.log(a);   // 21
+console.log(++a); // 22
+
+console.log(b++); // 53
+console.log(b);   // 54
+console.log(++b); // 55
+*/
+</script>
+</body>
+</html>
