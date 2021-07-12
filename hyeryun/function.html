@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="canvas"></div>
+
+    <ul id = "develop">
+        <li>혜련</li>
+        <li>은빈</li>
+        <li>남경</li>
+    </ul>
+    <hr>
+    <ul id="plan">
+        <li>재연</li>
+        <li>성엽</li>
+    </ul>
+<script>
+// 함수 (function)
+// 중학 수학 y = f(x), f(x)= 5x = 8 개념과 비슷
+// f(x)에서 x에 어떤 값을 넣느냐에 따라 y의 값이 결정됨
+
+// 함수를 선언하는 방식
+// neme => 함수의 이름
+// parameter1, parameter2 .. => 인자(매개변수), 몇개든 선언할 수 있음
+function neme(parameter1, parameter2, parameter3){
+    // 함수가 하는 일을 정의
+}
+
+var neme = function(parameter1, parameter2, parameter3){
+    // 함수가 하는 일을 정의
+}
+
+// 실제 함수 정의하기
+// 더하기 함수
+function add(number1, number2){
+    var addition = Number(number1) + Number(number2); // + 계산을 할 때 문자열과 숫자의 +가 서로 달랐음
+    
+    // console.log(addition);
+    return addition;
+}
+
+// 함수의 목적 : 코드의 중복을 막는 역할(같은 일을 하는 코드를 재사용)
+
+// 함수를 실행한다 == 함수를 부른다 == call
+var addition1 = add(10, 20); // 함수의 결과를 변수에 저장
+console.log(addition1);
+
+var addition2 = (add(10, 20) * add(15, 23)); // 함수 각각의 결과값이 임시 저장되어 계산됨
+console.log(addition2);
+
+console.log(add("8","9")); // 8 + 9 == 17이 나오게 하고 싶음
+
+console.log("=====================================")
+
+var develop = document.querySelector("#develop");
+var plan = document.querySelector("#plan");
+
+function addItem(list, text, cls){
+    // arguments -> 인자의 목록
+    console.log(arguments);
+
+    // cls 인자에 아무값도 넣지 않았을 때 자동으로 undefined 라는 값이 들어간다.
+    var li = document.createElement('li');
+    li.innerText = text;
+    li.classList.add(cls);
+    list.appendChild(li);
+}
+addItem(develop, "승철", "item-1");
+addItem(plan, "윤희", "item-A");
+
+// 함수를 부르는 방식 1 함수이름(인자)
+// apply 함수와 call 함수
+addItem.apply(null, [develop, "승철", "item-1"]); // apply 함수는 arguments처럼 인자의 목록을 넘겨줘야 하고
+addItem.call(null, develop, "승철", "item-1"); // call 함수는 두번째 인자부터 일반 함수 call처럼 인자로 넘겨줘야 한다.
+
+</script>
+</body>
+</html>
