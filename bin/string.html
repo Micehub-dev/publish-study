@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var str1 = '문자열 1';
+    var str2 = "문자열 2";
+
+    var numStr ="10.5";
+    var num1 =50;
+
+    console.log(numStr + num1); // 문자열 + 숫자 = 숫자가 문자열로 변환되서 나온다.
+    console.log(numStr - num1); // 숫자로만 이뤄진 문자열과 숫자형 변수를 빼거나 곱하거나 나누면, 숫자로 판단하여 계산,
+
+    console.log( Number(numStr) + num1); // number 함수는 숫자로만 이뤄진 문자를 소수점 자리까지 숫자형 변수로 변환
+    console.log( parseInt(numStr) + num1); // parseInt 함수는 정수 부분만 숫자로 변환
+    console.log("===============");
+    var alpha = "abc";
+    console.log(alpha.length); // 문자열의 길이를 알아내는 방법
+    console.log(alpha.toUpperCase() ); // 대문자로 치환,
+    alpha = alpha.toUpperCase(); // alpha 변수에 alpha 내용을 대문자로 치환하여 대입,
+    console.log(alpha);
+
+    console.log(alpha.toLowerCase()); // 소문자로 변환
+
+
+    //alpha == "ABC"
+    //각문자열의 각 부분을 구하는법
+    console.log(alpha.charAt(0));
+    console.log(alpha.charAt(1));
+    console.log(alpha.charAt(2));
+    console.log(alpha[0]);
+    console.log(alpha[1]);
+    console.log(alpha[2]);
+    console.log(alpha.charCodeAt(0)); //charCodeAt 문자열의 아스키 코드값을 얻는다 ex) A = 65
+    console.log(alpha.charCodeAt(1));
+    console.log(alpha.charCodeAt(2));
+
+    console.log('---------문자열 치환 함수--------');
+    //slice, substring, replace
+    var text = "All string methods return a new string";
+
+    //slice(firstIndex, lastIndex) firstIndex 부분부터 lastIndex 까지 잘라내는 함수
+    //slice(index) index 부분부터 끝까지
+    console.log(text.slice(5, 12)); //string m
+    console.log(text.slice(5));
+    console.log(text.slice(-5));
+
+    //substring == slice랑 비슷함
+    //차이점 : slice 에 인자하는 음수를 넣을 수 있는데, sbustring은 음수 못넣음
+    console.log(text.substring(-5));
+
+    //replace(findStr, replacement) = > 문자열에서 fondStr을 찾아서 replacement로 변환
+    console.log(text.replace("string",'numver'));
+    console.log(text.replace(/string/g,'number')); // 문자열/gi => 정규표현식
+</script>
+</body>
+</html>
