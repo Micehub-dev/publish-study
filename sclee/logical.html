@@ -1,24 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-<script>
-var str1= "A";
-var str2="a";
-console.log(str1.charCodeAt(0));
-console.log(str2.charCodeAt(0));
+  </head>
+  <body>
+    <script>
+      var str1 = "A";
+      var str2 = "a";
+      console.log(str1.charCodeAt(0));
+      console.log(str2.charCodeAt(0));
 
-console.log(1 == true); //true
-console.log(1 === true); //false
+      console.log(1 == true); //true
+      console.log(1 === true); //false
 
-//양수 == true
-//0 == false
-console.log(!(467));
-</script>
-</body>
+      //양수 == true
+      //0 == false
+      console.log(!467);
+
+      // 논리연산 : 어떤 표현식이 참이냐 거짓이냐
+      // 참: true, 거짓: false
+      // 두 값이 같은지를 검사하는 연산자: ==, ===
+      // 두 값이 같지 않은지 검사하는 연산자: !=, !==
+      // 왼쪽 값이 오른쪽 값 보다 더 큰가, 크거나 같은가: >, >=
+      // 오른쪽 .... : <, <=
+      // 아니다: !(논리표현식)
+
+      var a = 10;
+      var b = "10";
+      var c = 20;
+
+      console.log(a == 10);
+      console.log(a == b); // 프로그래밍에서 보통 10, "10" 다른 값인데 (자료형이 다르기 때문에)
+      // 자바스크립트에서는 엔진이 두개 값을 == 검사했을 때, 숫자 10과 문자열 '10'을 같다고 판단
+      console.log(a === b); // ===로 검사하면 자료형이 다른 경우 false 로 판단
+      console.log(a == c);
+
+      console.log("=============================");
+
+      console.log(a != 10);
+      console.log(a != b);
+      console.log(a !== b);
+      console.log(a != c);
+
+      console.log("=============================");
+
+      console.log(a < c); // true
+      console.log(a > c); // false
+
+      console.log("=============================");
+
+      var str1 = "ABC";
+      var str2 = "AEF";
+
+      console.log(str1 > str2);
+      console.log(str1 < str2);
+
+      str1 = "abc";
+      str2 = "AEF";
+
+      console.log(str1 > str2);
+      console.log(str1 < str2);
+
+      console.log("a".charCodeAt(0)); // 97
+      console.log("A".charCodeAt(0)); // 65
+
+      console.log("=============================");
+
+      console.log(!(a < c)); // !(true) => false
+
+      var logic = false;
+      console.log(!logic); // > true
+
+      console.log("=============================");
+
+      console.log("100");
+      console.log(Number("100"));
+      console.log(Number(true)); // 1
+
+      console.log(10 + true); // 11
+      console.log(10 - true); // 9
+
+      console.log(Number(false)); // 0
+
+      console.log(1 === true); // false
+
+      console.log("=============================");
+
+      //숫자형 자료를 논리형처럼 다뤘을 때 나타나는 성질
+      // 양수 == true
+      // 0 == false
+      console.log(Number(!!47.56));
+    </script>
+  </body>
 </html>
