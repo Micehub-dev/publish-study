@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //Plain Object
+    var obj = {};
+    console.log(obj);
+
+    var obj = { num: 1 };
+    console.log(obj);
+    
+    var obj = { num: 1, str: "abc", 'background-color':"#ffffe8", 'var':'bbbb'};
+    console.log(obj.num, obj.str);
+    console.log(obj['num'], obj['str']);
+    console.log(obj['background-color']);
+    console.log(obj.var);
+
+
+    //Object에 동적으로 속성값 변경 방법
+    obj.logic = false;
+    obj['logic2'] = true;
+    console.log(obj);
+
+    obj.num = 2;
+    obj['str']="ABC";
+    console.log(obj);
+
+
+    //Objcet 속성값 제거
+    delete obj.num;
+    delete obj['background-color'];
+    console.log(obj);
+</script>
+</body>
+</html>
