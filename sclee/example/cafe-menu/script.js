@@ -1,0 +1,22 @@
+'use strict';
+var items = [
+    { name: '리스트레토', price: 4000, category: 'espresso' },
+    { name: '에스프레소', price: 4000, category: 'espresso' },
+    { name: '에스프레소 마키아토', price: 4000, category: 'espresso' },
+    { name: '룽고', price: 4700, category: 'coffee', grand: 500 },
+    { name: '아메리카노', price: 4300, category: 'coffee'},
+    { name: '싱글 오리진 스페셜티', price: 4000, category: 'coffee', grand: 500 },
+    { name: '디카페인 브라질', price: 5300, category: 'coffee' },
+    { name: '콜드브루', price: 4700, category: 'cold brew', grand: 500 },
+    { name: '콜드브루 라떼', price: 5300, category: 'cold brew', grand: 500 },
+    { name: '스패니쉬 크림 콜드브루', price: 5800, category: 'cold brew', grand: 500 },
+    { name: '카페라떼', price: 5300, category: 'latte', grand: 500 },
+    { name: '카푸치노', price: 5300, category: 'latte', grand: 500, options: ['Hot Only'] },
+    { name: '카라멜 마키아토', price: 5800, category: 'latte', grand: 500 },
+    { name: '시나몬 라떼', price: 5800, category: 'latte', grand: 500 },
+    { name: '스패니쉬 라떼', price: 5800, category: 'latte', grand: 500 },
+    { name: '바닐라 라떼', price: 6300, category: 'latte', grand: 500 },
+    { name: '아이스크림 라떼', price: 6300, category: 'latte', grand: 500, options: ['Ice Only'] },
+    { name: '흑임자 카페 라떼', price: 6300, category: 'latte'},
+    { name: '제주 말차 라떼', price: 7000, category: 'latte', grand: 1000, options: ['Seasonal'] },
+];
