@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// Array (배열) : 번호가 매겨진 순서가 있는 목록
+// [(요소0), (요소1), (요소2), ...]
+// 요소: element, 항목: item
+var list = ["A", "B", "C", "D"];
+var list2 = [
+    "AAAAAAAAAAAAAAAAAAAA"
+    , "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+    , "CCC"
+    , "DDDDDDDDDDDDDDDDDDDDDDDD"
+]
+
+console.log(list);
+
+// 배열의 각 요소 참조 방식
+var value = list[0];
+console.log(value); // A
+console.log(list[1]);
+console.log(list[2]);
+console.log(list[3]);
+console.log(list[4]);
+
+console.log("=============================");
+
+// 배열의 길이 알아내기
+console.log(list.length);
+
+// 배열의 요소를 추가/수정
+// Object 속성을 추가/수정하는 방식과 유사
+list[4] = "E!"; // 요소 추가
+console.log(list);
+
+list[0] = "A?"; // 요소 수정
+console.log(list);
+
+list[10] = "가"; // 배열의 길이보다 더 큰 index에 항목 추가하면?
+console.log(list); // 5 ~ 9의 값이 undefined로 채워준 배열로 만들어준다.
+
+console.log("=============================");
+
+// 배열 데이터 형식이 갖고있는 함수
+
+var fruits = ["사과", "바나나", "파인애플", "망고"];
+// .push() => 배열의 제일 뒤에 요소를 추가
+fruits.push("수박");
+console.log(fruits);
+
+// .unshift() => 배열의 제일 앞에 요소를 추가
+fruits.unshift("배");
+console.log(fruits);
+
+// .pop() => 배열의 제일 뒤에 요소를 제거
+var last = fruits.pop(); // last에 마지막 요소 "수박"이 할당됨
+console.log(fruits);
+
+// .shift() => 배열의 제일 앞에 요소를 제거
+var first = fruits.shift(); // 배
+console.log(first);
+console.log(fruits);
+
+// .splice([색인], [개수], [추가될 요소들...])
+// "색인" 값부터 "개수"만큼 없애고, 그 자리에 "추가될 요소들"을 배열에 넣는다.
+// 현재 상태 : ["사과", "바나나", "파인애플", "망고"]
+// "바나나", "파인애플" 없애고 그 자리에 last(수박), first(배)를 넣는 예제
+var mid = fruits.splice(1, 2, last, first, "키위");
+console.log(fruits);
+
+// .concat( [배열 ...] ) (concatenation 이어주다)
+// 현재 배열에 "배열" 인자를 이어준다.
+// 두 개 배열을 합쳐주는 함수
+
+var moreFruits = ["토마토", "자두", "복숭아"];
+var manyFruits = fruits.concat(moreFruits);
+console.log(fruits); // fruots에 들어있던 요소가 그대로 출력
+                     // concat은 파괴적인 함수가 아니다 -> 원본 배열을 수정하지 않는다.
+console.log(manyFruits);
+
+// .slice( [자를 위치] )
+// "자를 위치"에서 배열을 잘라 뒤쪽 요소들을 반환한다. (파괴적인 함수가 아님)
+var sList = manyFruits.slice(4);
+console.log(manyFruits);
+console.log(sList);
+
+var sList2 = manyFruits.slice(0, 4);
+console.log(sList2);
+console.log(manyFruits);
+
+// .join() => 배열을 문자열로 만들어 줌
+var str = manyFruits.join("-");
+console.log(str);
+
+// 문자열 데이터의 .split() 함수 => 문자열을 배열로 만들어 줌
+var arr = str.split("-");
+console.log(arr);
+
+// join, split 사용시 주의점 예제
+var latlng = ["12,45", "56,78"];
+console.log(latlng);
+
+var newLatLng = latlng.join(",").split(",");
+console.log(newLatLng); // 원본 배열과 달라진다.
+
+</script>
+</body>
+</html>
