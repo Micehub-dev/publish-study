@@ -34,7 +34,7 @@ function renderItems(list){
         // 없으면 templates에서 category 요소를 복사한 뒤에, 그 요소를 menu에 넣고, 해당 요소를 가져온다.
         var category = getCategory(item);
 
-        // 매번 새 Item HTML Tag를 만들어서, category HTML에 넣어준다.
+        // 매번 새 Item HTML Tag를 만들어서, category HTML에 넣어준다.!!
         var itemNode = renderNewItem(category, item);
 
     });
