@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object  => Plain(평범한) Object(객체)
+        
+        var obj = {}; // 빈 object (Empty Object);
+        console.log(obj);
+
+        var obj = { num: 1 }; // num 값을 key로 가지고, 그 값은 1인 속성(Property)을 가지는 Object
+        console.log(obj);
+
+        var obj = { num: 1, str: "ABC" };
+        console.log(obj);
+
+
+        // 아래 Objcet 를 선언할 때 속성값을 주는 방법
+        var obj = { "num": 1, 'str': "ABC", 'background-color': '#ffffe8', 'var': 'BBB' }; // Key 값은 문자열 형이다.
+        console.log(obj);
+
+        // Objcet에서 속성 접근
+
+        console.log(obj.num);  // Object 의 속성을 접근하는 방식 첫번째
+        console.log(obj.str);
+        // console.log(obj.background-color); Key 값에 Javascript의 특수문자 들어 있을 때 사용할 수 없음
+        console.log(obj.var);
+
+        var key = 'num';
+        console.log(obj[key]);  //Object의 속성을 접근하는 방식 두번째
+        console.log(obj['str']);  // Object에서 불러올 속성의 Key 값이 매번 변할 때
+        console.log(obj['background-color']);
+        
+
+        console.log("=======================")
+
+        //Object에 동적으로 속성값 주는 방법, 속성값을 바꾸는 방법
+        obj.logic = false;
+        obj['logic2'] = true;
+        console.log(obj);
+
+        obj.num = 2;          // 값 수정
+        obj['str'] = "aef";
+        console.log(obj);
+
+        // Object에 속성값 제거하는 방법
+        delete obj.num
+        delete obj['background-color'];
+        console.log(obj);
+
+    </script>
+</body>
+</html>
