@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button { margin: 40px; width: 100px; padding: 20px;}
+</style>
+<body>
+
+    <button class="button" onclick="onButtonClick()">버튼</button>
+
+<script>
+    function onButtonClick(e){
+        // console.log('버튼클릭됨');
+        // console.log(e); // dom api 에 event 객체인데
+        // click 관련 이벤트 (touch, pen touch) => Event 객체가 poninterEvent 로 발생됨
+    }
+
+    function onButtonMouseDown(e){
+        console.log('MouseDown');
+    }
+    function onButtonMouseUp(e){
+        console.log('MouseUp');
+    }
+    function onButtonMouseEenter(e){
+        console.log('MouseEenter');
+    }
+    function onButtonMouseLeave(e){
+        console.log('Mouseleave');
+    }
+    function onButtonMouseMove(e){
+        console.log('MouseMove');
+    }
+
+    function onSpanClick(){
+        console.log('Span 태그 클릭됨');
+    }
+
+    var button = document.querySelector("button");
+
+    //마우스 이벤트 발생 순서는 아래와 같음
+    button.addEventListener('mousedown', onButtonMouseDown);
+    button.addEventListener('mouseup', onButtonMouseUp);
+    button.addEventListener('click', onButtonClick);
+
+    //마우스 움직임 관련 발생 순서는 아래와 같음
+    button.addEventListener('mouseenter', onButtonMouseEenter);
+    button.addEventListener('mousemove', onButtonMouseMove); // 안에서 움직일때
+    button.addEventListener('mouseleave', onButtonMouseLeave);
+</script>
+</body>
+</html>
