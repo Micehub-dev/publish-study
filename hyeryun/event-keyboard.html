@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="입력" id="my-input">
+
+<script>
+    function onKeyDown(){
+        console.log('key down');
+    }
+    function onKeyUp(){
+        console.log('key up');
+        console.log(event);
+
+        if(event.keyCode == 13){
+            alert("검색 실행: "+this.value);
+        }
+    }
+    function onKeyPress(){
+        console.log('key press');
+    }
+    function onInput(){
+        console.log('input');
+        console.log(event);
+    }
+
+    var input = document.getElementById("my-input");
+    input.addEventListener("keydown",onKeyDown);
+    input.addEventListener("keyup",onKeyUp);
+    input.addEventListener("keypress",onKeyPress);
+    input.addEventListener("input",onInput);
+</script>
+</body>
+</html>
