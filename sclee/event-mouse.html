@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button type="button" onclick="onButtonClick()">button</button>
+
+    <script>
+      function onButtonClick(e) {
+        console.log("button click");
+        console.log(e); //DOM API - Event 객체 : click 관련 이벤트(touch, pen touch) => Event 객체가 PointerEvent로 발생됨
+      }
+      function onButtonMouseDown(e) {
+        console.log("Mouse Down");
+      }
+      function onButtonMouseUp(e) {
+        console.log("Mouse Up");
+      }
+      function onButtonMouseEnter(e) {
+        console.log("Mouse Enter");
+      }
+      function onButtonMouseLeave(e) {
+        console.log("Mouse Leave");
+      }
+      function onButtonMouseMove(e) {
+        console.log("Mouse Move");
+      }
+      var button = document.querySelector("button");
+
+      //mouse click 관련 event 발생 순서
+      button.addEventListener("mousedown", onButtonMouseDown);
+      button.addEventListener("mouseup", onButtonMouseUp);
+      button.addEventListener("click", onButtonClick);
+
+      //mouse 움직임 관련 event 발생 순서
+      button.addEventListener("mouseenter", onButtonMouseEnter);
+      button.addEventListener("mouseleave", onButtonMouseLeave);
+      button.addEventListener("mousemove", onButtonMouseMove);
+    </script>
+  </body>
+</html>
