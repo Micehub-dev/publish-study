@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      html {
+        height: 100px;
+        font-size: 12px;
+      }
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      div {
+        position: relative;
+        box-sizing: border-box;
+        width: 500px;
+        height: 400px;
+        margin-left: 100px;
+        margin-top: 60px;
+        border: 1px solid black;
+        background-color: #e8e8e8;
+      }
+
+      span {
+        position: absolute;
+        top: 80px;
+        left: 120px;
+        box-sizing: border-box;
+        width: 150px;
+        height: 150px;
+        border: 5px solid #0088ff;
+        background-color: white;
+        white-space: nowrap; /*내용 텍스트가 범위를 넘어가도 자동 줄바꿈이 되지 않게*/
+      }
+
+      p {
+        margin: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button type="button" onclick="updateInfo()">update</button>
+    <div>
+      <span></span>
+    </div>
+    <script>
+      var div = document.querySelector("div");
+      var span = document.querySelector("span");
+
+      var props = ["offsetTop", "offsetLeft", "offsetWidth", "offsetHeight"];
+      props = props.concat([
+        "clientTop",
+        "clientLeft",
+        "clientWidth",
+        "clientHeight",
+      ]);
+      props = props.concat([
+        "scrollTop",
+        "scrollLeft",
+        "scrollWidth",
+        "scrollHeight",
+      ]);
+
+      //offsetTop : 부모요소의 위부터 몇 px 떨어져 있는지
+      //offsetLeft : 부모요소의 왼쪽부터 몇 px 떨어져 있는지
+      //offsetWidth : 해당 요소의 border 포함 가로 크기
+      //offsetHeight : 해당 요소의 border 포함 세로 크기
+      //clientTop : 해당 요소의 위쪽 테두리 크기
+      //clientLeft : 해당 요소의 왼쪽 테두리 크기
+      //clientWidth : 해당 요소의 border 제외 가로 크기
+      //clientHeight : 해당 요소의 border 제외 높이
+      //scrollTop : 해당 요소가 스크롤 가능할 때 위부터 스크롤 된 정도(px)
+      //scrollLeft : 해당 요소가 스크롤 가능할 때 왼쪽부터 스크롤 된 정도(px)
+      //scrollWidth : 해당 요소의 자식 요소가 차지하는 가로 크기(스크롤 가능한 가로 크기)
+      //scrollHeight : 해당 요소의 자식 요소가 차지하는 높이(스크롤 가능한 높이)
+
+      function showInfo(element) {
+        var infoHTML = "";
+        props.forEach(function (prop) {
+          infoHTML += prop + ": " + element[prop] + "<br>";
+        });
+
+        var clientRect = element.getBoundingClientRect();
+        var rectProps = ["top", "left", "width", "height"];
+        rectProps.forEach(function (prop) {
+          infoHTML += prop + ": " + clientRect[prop] + "<br>";
+        });
+
+        var p = element.querySelector(".info");
+        if (!p) {
+          p = document.createElement("p");
+          p.classList.add("info");
+          element.appendChild(p);
+        }
+
+        p.innerHTML = infoHTML;
+      }
+
+      function updateInfo() {
+        showInfo(div);
+        showInfo(span);
+      }
+
+      function makeDraggable(element) {
+        var mouseX = 0,
+          mouseY = 0,
+          deltaX = 0,
+          deltaY = 0;
+
+        element.addEventListener("mousedown", onMouseDown);
+
+        function onMouseDown(event) {
+          event = event || window.event;
+
+          mouseX = event.clientX;
+          mouseY = event.clientY;
+
+          element.addEventListener("mousemove", onDrag);
+          element.addEventListener("mouseup", onMouseUp);
+        }
+
+        function onDrag(event) {
+          event = event || window.event;
+          event.preventDefault();
+
+          deltaX = mouseX - event.clientX;
+          deltaY = mouseY - event.clientY;
+
+          mouseX = event.deltaX;
+          mouseY = event.deltaY;
+
+          element.style.top = element.offsetTop - deltaY + "px";
+          element.style.left = element.offsetLeft - deltaX + "px";
+
+          updateInfo();
+        }
+
+        function onMouseUp(event) {
+          element.removeEventListener("mousemove", onDrag);
+          element.removeEventListener("mouseUp", onMouseUp);
+        }
+      }
+
+      makeDraggable(span);
+    </script>
+  </body>
+</html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+
+<style>
+html { height:100%; font-size:12px; }
+body { height:100%; margin:0; }
+
+div { 
+    position: relative;
+    box-sizing: border-box; /* width, height 값이 padding과 border 값을 포함하도록 함 (기본값은 content-box) */
+    width:500px;
+    height:400px;
+    margin-left:100px;
+    margin-top:60px;
+    padding:10px;
+    border:1px solid black;
+    background-color:#e8e8e8;
+ }
+
+ span {
+     position: absolute;
+     top: 80px;
+     left: 120px;
+     box-sizing: border-box;
+     width:150px;
+     height:150px;
+     border:5px solid #0088ff;
+     background-color:white;
+     white-space: nowrap; /* 내용 텍스트가 범위를 넘어가도 자동 줄바꿈이 되지 않게 */
+ }
+
+ p { margin:0; }
+</style>
+</head>
+<body>
+
+    <button type="button" onclick="updateInfo()">Update</button>
+
+    <div>
+        <span></span>
+    </div>
+
+<script>
+var div = document.querySelector("div");
+var span = document.querySelector("span");
+
+var props = ['offsetTop', 'offsetLeft', 'offsetWidth', 'offsetHeight'];
+props = props.concat(['clientTop', 'clientLeft', 'clientWidth', 'clientHeight']);
+props = props.concat(['scrollTop', 'scrollLeft', 'scrollWidth', 'scrollHeight']);
+
+// offsetLeft: 부모요소의 왼쪽으로 부터 몇 pixel 떨어져 있는지
+// offsetTop: 부모요소의 위로 부터 몇 pixel 떨어져 있는지
+// offsetWidth: 해당 요소의 border(테두리) 포함 가로 크기
+// offsetHeight: 해당 요소의 border(테두리) 포함 높이
+// clientTop: 해당 요소의 위쪽 테두리 크기
+// clientLeft: 해당 요소의 왼쪽 테두리 크기
+// clientWidth: 해당 요소의 border(테두리) 제외 가로 크기
+// clientHeight: 해당 요소의 border(테두리) 제외 높이
+// scrollLeft: 해당 요소가 스크롤 가능할 때, 왼쪽부터 스크롤 된 정도 (pixel)
+// scrollTop: 해당 요소가 스크롤 가능할 때, 위쪽부터 스크롤 된 정도 (pixel)
+// scrollWidth: 해당 요소의 자식 요소가 차지하는 가로 크기 (스크롤 가능한 가로 크기)
+// scrollHeight: 해당 요소의 자식 요소가 차지하는 높이 (스크롤 가능한 높이)
+
+function showInfo(element){
+    var infoHTML = "";
+    props.forEach(function(prop){
+        infoHTML += prop+": "+element[prop]+"<br>"; // element["offsetTop"] == element.offsetTop
+    });
+    var clientRect = element.getBoundingClientRect();
+    var rectProps = ['top','left','width','height'];
+    rectProps.forEach(function(prop){
+        infoHTML += prop+": "+clientRect[prop]+"<br>";
+    });
+
+    var p = element.querySelector(".info");
+    if( !p ){
+        p = document.createElement("p");
+        p.classList.add("info");
+        element.appendChild(p);
+    }
+    p.innerHTML = infoHTML;
+    
+}
+
+function updateInfo(){
+    showInfo(div);
+    showInfo(span);
+}
+
+function makeDraggable(element){
+    var mouseX = 0,
+        mouseY = 0,
+        deltaX = 0,
+        deltaY = 0;
+    
+    element.addEventListener("mousedown", onMouseDown);
+    
+    function onMouseDown(event){
+        event = event || window.event;
+
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+
+        element.addEventListener("mousemove", onDrag);
+        element.addEventListener("mouseup", onMouseUp)
+    }
+
+    function onDrag(event){
+        event = event || window.event;
+        event.preventDefault();
+
+        deltaX = mouseX - event.clientX;
+        deltaY = mouseY - event.clientY;
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+
+        element.style.top = (element.offsetTop - deltaY) + "px";
+        element.style.left = (element.offsetLeft - deltaX) + "px";
+
+        updateInfo();
+    }
+
+    function onMouseUp(event){
+        element.removeEventListener("mousemove", onDrag);
+        element.removeEventListener("mouseup", onMouseUp);
+    }
+}
+
+makeDraggable(span);
+
+//console.dir(div);
+</script>
+</body>
+</html>
