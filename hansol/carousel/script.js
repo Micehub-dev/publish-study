@@ -58,7 +58,7 @@ function Carousel(selector) {
     track.style.transform = "translate(-" + cursor * slideWidth + "px, 0px)";
   };
   this.previous = function () {
-    cursor = Math.min(cursor - 1, 0);
+    cursor = Math.max(cursor - 1, 0);
     track.style.transform = "translate(-" + cursor * slideWidth + "px, 0px)";
   };
 
