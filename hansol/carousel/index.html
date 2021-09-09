@@ -10,11 +10,7 @@
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
-    <br /><br />
-
-    <button type="text" onclick="{previous()}">Previous</button>
-    <button type="text" onclick="{next()}">next</button>
-    <br /><br />
+    <br /><br /><br /><br />
 
     <div id="list">
       <div class="item">
@@ -43,9 +39,59 @@
       </div>
     </div>
 
+    <div style="text-align: center">
+      <button type="text" onclick="slide1.previous()">Previous</button>
+      <button type="text" onclick="slide1.next()">Next</button>
+      <br />
+      <button type="button" onclick="showSlideNumber()">
+        What is my slide number?
+      </button>
+    </div>
+
+    <br /><br /><br /><br />
+
+    <div id="list2">
+      <div class="item">
+        <figure>
+          <img src="https://picsum.photos/1280/720?random=5" />
+        </figure>
+        <h3>Slide 1</h3>
+      </div>
+      <div class="item">
+        <figure>
+          <img src="https://picsum.photos/1280/720?random=6" />
+        </figure>
+        <h3>Slide 2</h3>
+      </div>
+      <div class="item">
+        <figure>
+          <img src="https://picsum.photos/1280/720?random=7" />
+        </figure>
+        <h3>Slide 3</h3>
+      </div>
+      <div class="item">
+        <figure>
+          <img src="https://picsum.photos/1280/720?random=8" />
+        </figure>
+        <h3>Slide 4</h3>
+      </div>
+    </div>
+
+    <div style="text-align: center">
+      <button type="text" onclick="slide2.previous()">Previous</button>
+      <button type="text" onclick="slide2.next()">Next</button>
+    </div>
+
     <script src="script.js"></script>
     <script>
-      carousel("#list");
+      var slide1 = new Carousel("#list");
+      var slide2 = new Carousel("#list2");
+
+      function showSlideNumber() {
+        alert(slide1.getSlideNumber());
+      }
+
+      slide1.cursor = 2;
     </script>
   </body>
 </html>

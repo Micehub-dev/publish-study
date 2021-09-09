@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <button type="button" onclick="counter1.add()">Counter 1</button>
+      <span class="counter-1"></span>
+    </div>
+    <div>
+      <button type="button" onclick="counter2.add()">Counter 2</button>
+      <span class="counter-2"></span>
+    </div>
+
+    <script>
+      //function을 class로 만들기
+      //노출시키고 싶은 속성(변수, 함수 기능)을 this에 할당
+      //function 안에 this가 하나라도 있으면, 그 함수는 calss로 만들 수 있음
+      //class로 만들어진 함수는 객체(Instance)로 불려짐
+      function Counter(selector) {
+        var element = document.querySelector(selector);
+
+        this.count = 0;
+
+        this.showCount = function () {
+          element.innerText = this.count + ""; // 숫자형->문자형
+        };
+
+        this.add = function () {
+          this.count++;
+          this.showCount();
+        };
+
+        this.showCount();
+      }
+
+      //   counter(".counter-1");
+      //   counter(".counter-2");
+
+      //class를 instance화 시키기
+      var counter1 = new Counter(".counter-1");
+      var counter2 = new Counter(".counter-2");
+
+      console.log(counter1);
+    </script>
+  </body>
+</html>

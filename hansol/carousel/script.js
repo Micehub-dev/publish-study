@@ -1,4 +1,4 @@
-function carousel(selector) {
+function Carousel(selector) {
   var context = document.querySelector(selector);
 
   //context overflow hidden
@@ -53,17 +53,19 @@ function carousel(selector) {
 
   //slide 상태
   var cursor = 0;
-  function next() {
+  this.next = function () {
     cursor = Math.min(cursor + 1, slideSize - 1);
     track.style.transform = "translate(-" + cursor * slideWidth + "px, 0px)";
-  }
-  function previous() {
+  };
+  this.previous = function () {
     cursor = Math.min(cursor - 1, 0);
     track.style.transform = "translate(-" + cursor * slideWidth + "px, 0px)";
-  }
+  };
 
-  window.next = next;
-  window.previous = previous;
+  //cursor readonly
+  this.getSlideNumber = function () {
+    return cursor;
+  };
 }
 
 function css(element, cssProperty) {
