@@ -1,4 +1,4 @@
-function carousel(selector){
+function Carousel(selector){
     var context = document.querySelector(selector);
 
     //context의 overflow 스타일을 hidden으로
@@ -59,19 +59,27 @@ function carousel(selector){
     context.appendChild(track);
 
     // 현재 슬라이드 상태
+    // 만약, 이 슬라이드 기능의 요구사항 중에
+    // 현재 슬라이드 번호(cursor)가 뭔지 알 수 있게 해주세요.
+    // 라는 요구사항이 있으면
+    // 그때 cursor를 객체의 노출된 변수로 지정해야 될 필요가 생기는 것
     var cursor = 0;
-    function next(){
+    this.next = function(){
         cursor = Math.min(cursor + 1, slideSize - 1);
         track.style.transform = "translate(-"+(cursor*slideWidth)+"px, 0px)";
     }
 
-    function previous(){
+    this.previous = function(){
         cursor = Math.max(cursor - 1, 0);
         track.style.transform = "translate(-"+(cursor*slideWidth)+"px, 0px)";
     }
+
+    // cursor에 값만 알 수 있게 해주고
+    // cursor를 임의로 바꿀 수 없게 해주세요.
+    this.getSlideNumber = function(){
+        return cursor;
+    }
     
-    window.next = next;
-    window.previous = previous;
 }
 
 function css(element, cssProperty){

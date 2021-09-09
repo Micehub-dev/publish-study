@@ -17,7 +17,7 @@ img {
 }
 
 /* */
-#list {
+#list, #list2 {
     width: 64vw;
     height: 45vw;
     margin: 0 auto;
