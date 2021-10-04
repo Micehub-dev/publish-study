@@ -1,5 +1,15 @@
-function Carousel(selector){
+function Carousel(selector, options){
     this.context = document.querySelector(selector);
+
+    // 옵션 기본값
+    var defaults = {
+        autoplay: false,
+        autoplaySpeed: 5000 //ms
+    };
+
+    // Object.assign 함수: 두번째 이후 값들의 속성값들을 복사하여
+    // 첫번째 값에 넣어준다.
+    this.options = Object.assign({}, defaults, options || {});
 
     this.init = function(){
 		//context의 overflow 스타일을 hidden으로
@@ -24,6 +34,10 @@ function Carousel(selector){
 
         this.buildTrack();
         this.bindEvents();
+
+        if(this.options.autoplay === true){
+            this.startAutoplay();
+        }
     },
 
     this.calculateContext = function(){
@@ -88,13 +102,29 @@ function Carousel(selector){
     // 그때 cursor를 객체의 노출된 변수로 지정해야 될 필요가 생기는 것
     var cursor = 0;
     this.next = function(){
-        cursor = Math.min(cursor + 1, this.slideSize - 1);
-        this.setTrackPosition();
+        this.goTo(cursor + 1);
     }
 
     this.previous = function(){
-        cursor = Math.max(cursor - 1, 0);
+        this.goTo(cursor - 1);
+    }
+
+    this.goTo = function(slideNumber){
+        if(slideNumber == NaN || typeof slideNumber !== 'number') return;
+        
+        if(slideNumber < 0){
+            slideNumber = this.slideSize - Math.abs(slideNumber) % this.slideSize;
+        }else{
+            slideNumber = slideNumber % this.slideSize;
+        }
+
+        cursor = Math.round(slideNumber);
+
         this.setTrackPosition();
+
+        if(this.options.autoplay === true){
+            this.startAutoplay();
+        }
     }
 
     // cursor에 값만 알 수 있게 해주고
@@ -136,6 +166,23 @@ function Carousel(selector){
             }
         }
     }
+
+    // Autoplay
+    var autoplayTimeout = null;
+    this.startAutoplay = function(){
+        if(this.options.autoplay !== true){
+            console.warn("Autoplay Disabled");
+            return;
+        }
+        
+        var self = this;
+        if(autoplayTimeout != null){
+            clearTimeout(autoplayTimeout);
+        }
+        autoplayTimeout = setTimeout(function(){
+            self.next();
+        }, self.options.autoplaySpeed);
+    };
     
     this.init();
 	
