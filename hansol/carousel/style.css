@@ -34,10 +34,8 @@ img {
 }
 
 /* */
-#list,
-#list2 {
+#list {
   width: 64vw;
-  height: 45vw;
   margin: 0 auto;
 }
 
