@@ -6,7 +6,9 @@ function Carousel(selector, options){
         autoplay: false,
         autoplaySpeed: 5000, //ms
         arrows: true,
-        dots: false
+        dots: false,
+        flexbox: false,
+        vertical: false,
     };
 
     // Object.assign 함수: 두번째 이후 값들의 속성값들을 복사하여
@@ -55,6 +57,16 @@ function Carousel(selector, options){
         this.track.style.transform = "translate(0px, 0px)";
         this.track.style.transition = "transform 300ms, height 300ms";
         
+        if(this.options.flexbox === true){
+            this.track.style.display = 'flex';
+            this.track.style.width = '100%';
+            this.track.style['alignItems'] = 'flex-start';
+
+            if(this.options.vertical === true){
+                this.track.style['flexFlow'] = 'column nowrap';
+            }
+        }
+        
         this.setSlidePositions(true);
     
         // track을 context의 자식 요소로 배치
@@ -74,9 +86,21 @@ function Carousel(selector, options){
     };
 
     this.setSlidePosition = function(slide, i){
-        slide.style.position = "absolute";
-        slide.style.top = "0px";
-        slide.style.left = (this.slideWidth * i)+"px";
+        if(this.options.fade === true){
+            slide.style.position = "absolute";
+            slide.style.top = "0px";
+            slide.style.left = "0px";
+            slide.style.transition = "opacity 300ms";
+            slide.style.opacity = 0;
+
+        } else if(this.options.flexbox === true){
+            slide.style['flex-shrink'] = '0';
+
+        }else{
+            slide.style.position = "absolute";
+            slide.style.top = "0px";
+            slide.style.left = (this.slideWidth * i)+"px";
+        }
 
         var boxSizing = css(slide, "box-sizing");
         if(boxSizing === 'border-box'){
@@ -142,12 +166,22 @@ function Carousel(selector, options){
     };
 
     this.setTrackPosition = function(){
-        this.track.style.transform = "translate(-"+(cursor * this.slideWidth)+"px, 0px)";
+        if(this.options.fade === true){
+            this.slides.forEach(function(e){
+                e.style.opacity = 0;
+            });
+            this.slides[cursor].style.opacity = 1;
+        }else if(this.options.vertical === true){
+            this.track.style.transform = "translate(0px, -"+this.slides[cursor].offsetTop+"px)";
+        }else{
+            this.track.style.transform = "translate(-"+(cursor * this.slideWidth)+"px, 0px)";
+        }
         this.track.style.height = this.getCurrentSlideHeight() + "px";
     };
 
     this.getCurrentSlideHeight = function(){
-        return this.slides[cursor].clientHeight;
+        var slide = this.slides[cursor];
+        return slide.clientHeight;
     }
 
     this.bindEvents = function(){
