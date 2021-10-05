@@ -11,9 +11,12 @@
 </head>
 <body>
     <br><br>
-
-    <button type="button" onclick="previous()">Previous</button>
-    <button type="button" onclick="next()">next</button>
+    <div style="text-align: center;">
+        <button type="button" onclick="slide1.previous()">Previous</button>
+        <button type="button" onclick="slide1.next()">next</button>
+        <br>
+        <button type="button" onclick="showSlideNumber()">a</button>
+    </div>
     <br><br>
 
     <div id="list">
@@ -28,23 +31,35 @@
                 <img src="https://picsum.photos/1280/720?random=2" />
             </figure>
             <h3>Slide 2</h3>
+            <p>Second Slide</p>
         </div>
         <div class="item">
             <figure>
                 <img src="https://picsum.photos/1280/720?random=3" />
             </figure>
             <h3>Slide 3</h3>
+            <p>Third Slide</p>
+            <p>ABC</p>
         </div>
         <div class="item">
             <figure>
                 <img src="https://picsum.photos/1280/720?random=4" />
             </figure>
             <h3>Slide 4</h3>
+            <p>Third Slide</p>
         </div>
     </div>
+
     <script src="script.js"></script>
     <script>
-        carousel('#list');
+       var slide1 = new Carousel('#list',{
+        //    autoplay : true;
+       });
+
+        function showSlideNumber(){
+            alert(slide1.getSlideNumber());
+        }
+
     </script>
 </body>
 </html>
