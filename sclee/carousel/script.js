@@ -4,7 +4,9 @@ function Carousel(selector, options){
     // 옵션 기본값
     var defaults = {
         autoplay: false,
-        autoplaySpeed: 5000 //ms
+        autoplaySpeed: 5000, //ms
+        arrows: true,
+        dots: false
     };
 
     // Object.assign 함수: 두번째 이후 값들의 속성값들을 복사하여
@@ -14,6 +16,7 @@ function Carousel(selector, options){
     this.init = function(){
 		//context의 overflow 스타일을 hidden으로
 		this.context.style.overflow = "hidden";
+        this.context.classList.add("carousel-context");
 
 		var children = this.context.children;   // context의 자식 HTML 태그들이 반환됨
 		// Type : HTMLCollection -> Array 형식
@@ -33,6 +36,7 @@ function Carousel(selector, options){
         }
 
         this.buildTrack();
+        this.buildNavigation();
         this.bindEvents();
 
         if(this.options.autoplay === true){
@@ -122,6 +126,10 @@ function Carousel(selector, options){
 
         this.setTrackPosition();
 
+        if(this.options.dots === true){
+            this.setActiveDot();
+        }
+
         if(this.options.autoplay === true){
             this.startAutoplay();
         }
@@ -175,14 +183,81 @@ function Carousel(selector, options){
             return;
         }
         
-        var self = this;
+        var carousel = this;
         if(autoplayTimeout != null){
             clearTimeout(autoplayTimeout);
         }
         autoplayTimeout = setTimeout(function(){
-            self.next();
-        }, self.options.autoplaySpeed);
+            carousel.next();
+        }, carousel.options.autoplaySpeed);
     };
+
+    // Navigation UI
+    this.buildNavigation = function(){
+        if(this.options.arrows === true){
+            this.buildArrows();
+        }
+
+        if(this.options.dots === true){
+            this.buildDots();
+        }
+    };
+
+    this.buildArrows = function(){
+        this.arrows = {};
+        this.arrows.prev = this.buildArrow('prev');
+        this.arrows.next = this.buildArrow('next');
+    };
+
+    this.buildArrow = function(type){
+        var carousel = this;
+        var arrow = document.createElement("span");
+        arrow.classList.add("arrow", type);
+        arrow.innerText = type == 'prev' ? '〈' : '〉';
+        this.context.appendChild(arrow);
+
+        arrow.addEventListener('click', function(e){
+            e.preventDefault();
+            if(type == 'prev'){
+                carousel.previous();
+            }else{
+                carousel.next();
+            }
+        });
+        
+        return arrow;
+    }
+
+    this.buildDots = function(){
+        var carousel = this;
+        this.dotList = document.createElement("ol");
+        this.dotList.classList.add("dot-list");
+
+        for(var i = 0; i < this.slideSize; ++i){
+            var dot = document.createElement("li");
+            dot.classList.add("dot");
+            this.dotList.append(dot);
+            dot.index = i;
+
+            dot.addEventListener("click", function(e){
+                e.preventDefault();
+                carousel.goTo(this.index);
+            });
+        }
+
+        this.context.appendChild(this.dotList);
+
+        this.setActiveDot();
+    }
+
+    this.setActiveDot = function(){
+        this.dotList.querySelectorAll(".active").forEach(function(e){
+            e.classList.remove('active');
+        });
+
+        this.dotList.children[cursor].classList.add("active");
+    }
+
     
     this.init();
 	
