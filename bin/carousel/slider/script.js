@@ -113,6 +113,9 @@ function Carousel(selector){
             }
         }
     }
+    setInterval(function(){
+        this.next();
+    }.bind(this),500)
 
     // 현재 슬라이드 상태
     // 만약, 이 슬라이드 기능의 요구사항중에,
@@ -123,12 +126,12 @@ function Carousel(selector){
     this.next = function(){
         cursor = Math.min(cursor + 1, this.slideSize - 1);
         this.setTrackPosition();
-    }
+    };
 
     this.previous = function(){
         cursor = Math.max(cursor - 1, 0);
         this.setTrackPosition();
-    }
+    };
 
     this.setTrackPosition = function(){
         this.track.style.transform = 'translate(-'+(cursor*this.slideWidth)+'px, 0px)';
