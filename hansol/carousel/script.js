@@ -107,7 +107,11 @@ function Carousel(selector, slider) {
   //slide 상태
   var cursor = 0;
   this.next = function () {
-    cursor = Math.min(cursor + 1, this.slideSize - 1);
+    cursor =
+      cursor === this.slideSize - 1
+        ? 0
+        : Math.min(cursor + 1, this.slideSize - 1);
+
     this.setTrackPosition();
   };
 
