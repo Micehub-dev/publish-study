@@ -53,7 +53,9 @@
 
     <script src="script.js"></script>
     <script>
-      var slide1 = new Carousel("#list");
+      var slide1 = new Carousel("#list", {
+        autoplay: true,
+      });
 
       function showSlideNumber() {
         alert(slide1.getSlideNumber());

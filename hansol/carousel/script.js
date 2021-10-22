@@ -1,4 +1,4 @@
-function Carousel(selector) {
+function Carousel(selector, slider) {
   this.context = document.querySelector(selector);
 
   this.init = function () {
@@ -36,7 +36,7 @@ function Carousel(selector) {
 
     this.setSlidePositions(true);
 
-    //trach을 context의 자식 요소로 배치
+    //track을 context의 자식 요소로 배치
     this.context.appendChild(this.track);
 
     //track의 transform translate 값과 현ㄷ재 슬라이드에 해당하는 높이값을 계산해서 대입
@@ -132,6 +132,10 @@ function Carousel(selector) {
   };
 
   this.init();
+
+  if (slider.autoplay) {
+    setInterval(this.next.bind(this), 3000);
+  }
 
   function css(element, cssProperty) {
     var cssValue = window.getComputedStyle(element)[cssProperty];
