@@ -134,7 +134,7 @@ function Carousel(selector, slider) {
   this.init();
 
   if (slider.autoplay) {
-    setInterval(this.next.bind(this), 3000);
+    setInterval(this.next.bind(this), slider.autoplaySpeed);
   }
 
   function css(element, cssProperty) {
