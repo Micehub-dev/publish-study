@@ -39,7 +39,7 @@ function Carousel(selector, slider) {
     //track을 context의 자식 요소로 배치
     this.context.appendChild(this.track);
 
-    //track의 transform translate 값과 현ㄷ재 슬라이드에 해당하는 높이값을 계산해서 대입
+    //track의 transform translate 값과 현재 슬라이드에 해당하는 높이값을 계산해서 대입
     this.setTrackPosition();
   };
 
@@ -139,6 +139,36 @@ function Carousel(selector, slider) {
 
   if (slider.autoplay) {
     setInterval(this.next.bind(this), slider.autoplaySpeed);
+  }
+
+  if (slider.arrows) {
+    this.arrows = document.createElement("div");
+    this.arrows.style.position = "absolute";
+    this.arrows.style.width = "64vw";
+    this.arrows.style.top = "50%";
+    this.arrows.style.transform = "translate(0px, -50px)";
+
+    this.left = document.createElement("button");
+    this.left.innerText = "‹";
+    this.left.style.fontSize = "5rem";
+    this.left.style.color = "#fff";
+    this.left.style.background = "none";
+    this.left.style.border = "0";
+
+    this.right = document.createElement("button");
+    this.right.innerText = "›";
+    this.right.style.float = "right";
+    this.right.style.fontSize = "5rem";
+    this.right.style.color = "#fff";
+    this.right.style.background = "none";
+    this.right.style.border = "0";
+
+    this.context.appendChild(this.arrows);
+    this.arrows.appendChild(this.left);
+    this.arrows.appendChild(this.right);
+
+    this.left.addEventListener("click", this.previous.bind(this));
+    this.right.addEventListener("click", this.next.bind(this));
   }
 
   function css(element, cssProperty) {
