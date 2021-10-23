@@ -49,3 +49,13 @@ img {
 .item:nth-child(2n) {
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+#dot0,
+#dot1,
+#dot2,
+#dot3 {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+}
