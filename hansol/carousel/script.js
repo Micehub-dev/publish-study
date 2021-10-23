@@ -113,11 +113,19 @@ function Carousel(selector, slider) {
         : Math.min(cursor + 1, this.slideSize - 1);
 
     this.setTrackPosition();
+
+    if (slider.currentSlide) {
+      this.getCurrentSlide(cursor + 1);
+    }
   };
 
   this.previous = function () {
     cursor = Math.max(cursor - 1, 0);
     this.setTrackPosition();
+
+    if (slider.currentSlide) {
+      this.getCurrentSlide(cursor + 1);
+    }
   };
 
   this.setTrackPosition = function () {
@@ -169,6 +177,20 @@ function Carousel(selector, slider) {
 
     this.left.addEventListener("click", this.previous.bind(this));
     this.right.addEventListener("click", this.next.bind(this));
+  }
+
+  if (slider.currentSlide) {
+    this.current = document.createElement("div");
+    this.current.style.textAlign = "center";
+    this.current.style.width = "64vw";
+    this.current.style.color = "#fff";
+    this.current.style.fontSize = "1.5rem";
+    this.current.innerText = 1 + " / " + this.slideSize;
+    this.getCurrentSlide = function (cursor) {
+      this.current.innerText = cursor + " / " + this.slideSize;
+    };
+
+    this.context.appendChild(this.current);
   }
 
   function css(element, cssProperty) {
