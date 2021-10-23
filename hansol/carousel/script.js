@@ -25,7 +25,7 @@ function Carousel(selector, slider) {
   };
 
   this.calculateContext = function () {
-    this.slideWidth = this.context.clientWidth;
+    this.slideHeight = this.context.clientHeight;
   };
 
   this.buildTrack = function () {
@@ -58,8 +58,8 @@ function Carousel(selector, slider) {
 
   this.setSlidePosition = function (slide, i) {
     slide.style.position = "absolute";
-    slide.style.top = "0px";
-    slide.style.left = this.slideWidth * i + "px";
+    slide.style.top = this.slideHeight * i + "px";
+    slide.style.left = "0px";
 
     var boxSizing = css(slide, "box-sizing");
     if (boxSizing === "border-box") {
@@ -130,7 +130,7 @@ function Carousel(selector, slider) {
 
   this.setTrackPosition = function () {
     this.track.style.transform =
-      "translate(-" + cursor * this.slideWidth + "px, 0px)";
+      "translate(0px, -" + cursor * this.slideHeight + "px)";
     this.track.style.height = this.getCurrentSlideHeight() + "px";
   };
 
