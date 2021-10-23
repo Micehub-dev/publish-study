@@ -193,6 +193,32 @@ function Carousel(selector, slider) {
     this.context.appendChild(this.current);
   }
 
+  if (slider.dots) {
+    this.dot = document.createElement("div");
+    this.dot.style.textAlign = "center";
+    this.dot.style.width = "64vw";
+    this.dot.style.position = "absolute";
+    this.dot.style.top = "10%";
+
+    for (var d = 0; d < this.slideSize; d++) {
+      this.dot.innerHTML +=
+        "<button id='dot" +
+        d +
+        "' onClick='slide1.dotButtonEvent(" +
+        d +
+        ")'> • " +
+        "</button>";
+    }
+
+    this.context.appendChild(this.dot);
+  }
+
+  this.dotButtonEvent = function (d) {
+    cursor = d;
+    this.setTrackPosition();
+    this.getCurrentSlide(d + 1);
+  };
+
   function css(element, cssProperty) {
     var cssValue = window.getComputedStyle(element)[cssProperty];
     //정규식으로 숫자부분만 추출
