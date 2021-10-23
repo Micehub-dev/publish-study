@@ -25,12 +25,13 @@ function Carousel(selector, slider) {
   };
 
   this.calculateContext = function () {
-    this.slideHeight = this.context.clientHeight;
+    this.slideWidth = this.context.clientWidth;
   };
 
   this.buildTrack = function () {
     this.track = document.createElement("div");
-    this.track.style.position = "relative";
+    this.track.style.display = "flex";
+    this.track.style.flexFlow = "column wrap";
     this.track.style.transform = "translate(0px, 0px)";
     this.track.style.transition = "transform 300ms, height 300ms";
 
@@ -57,9 +58,10 @@ function Carousel(selector, slider) {
   };
 
   this.setSlidePosition = function (slide, i) {
-    slide.style.position = "absolute";
-    slide.style.top = this.slideHeight * i + "px";
-    slide.style.left = "0px";
+    slide.style.display = "flex";
+    slide.style.flexDirection = "column";
+    slide.style.width = this.slideWidth + "px";
+    slide.style.height = "fit-content";
 
     var boxSizing = css(slide, "box-sizing");
     if (boxSizing === "border-box") {
@@ -130,7 +132,7 @@ function Carousel(selector, slider) {
 
   this.setTrackPosition = function () {
     this.track.style.transform =
-      "translate(0px, -" + cursor * this.slideHeight + "px)";
+      "translate(-" + cursor * this.slideWidth + "px, 0px)";
     this.track.style.height = this.getCurrentSlideHeight() + "px";
   };
 
@@ -151,10 +153,9 @@ function Carousel(selector, slider) {
 
   if (slider.arrows) {
     this.arrows = document.createElement("div");
-    this.arrows.style.position = "absolute";
-    this.arrows.style.width = "64vw";
-    this.arrows.style.top = "50%";
-    this.arrows.style.transform = "translate(0px, -50px)";
+    this.arrows.style.display = "flex";
+    this.arrows.style.justifyContent = "space-between";
+    this.arrows.style.transform = "translate(0px, -300px)";
 
     this.left = document.createElement("button");
     this.left.innerText = "‹";
@@ -195,11 +196,8 @@ function Carousel(selector, slider) {
 
   if (slider.dots) {
     this.dot = document.createElement("div");
-    this.dot.style.textAlign = "center";
-    this.dot.style.width = "64vw";
-    this.dot.style.position = "absolute";
-    this.dot.style.top = "10%";
-
+    this.dot.style.display = "flex";
+    this.dot.style.justifyContent = "center";
     for (var d = 0; d < this.slideSize; d++) {
       this.dot.innerHTML +=
         "<button id='dot" +
