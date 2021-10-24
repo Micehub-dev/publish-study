@@ -33,7 +33,6 @@ function Carousel(selector, slider) {
     this.track.style.display = "flex";
     this.track.style.flexFlow = "column wrap";
     this.track.style.transform = "translate(0px, 0px)";
-    this.track.style.transition = "transform 300ms, height 300ms";
 
     this.setSlidePositions(true);
 
@@ -62,6 +61,8 @@ function Carousel(selector, slider) {
     slide.style.flexDirection = "column";
     slide.style.width = this.slideWidth + "px";
     slide.style.height = "fit-content";
+    slide.style.transition = "opacity 1s ease-in-out";
+    slide.style.opacity = i === 0 ? 1 : 0;
 
     var boxSizing = css(slide, "box-sizing");
     if (boxSizing === "border-box") {
@@ -109,6 +110,7 @@ function Carousel(selector, slider) {
   //slide 상태
   var cursor = 0;
   this.next = function () {
+    this.slides[cursor].style.opacity = 0;
     cursor =
       cursor === this.slideSize - 1
         ? 0
@@ -119,15 +121,18 @@ function Carousel(selector, slider) {
     if (slider.currentSlide) {
       this.getCurrentSlide(cursor + 1);
     }
+    this.slides[cursor].style.opacity = 1;
   };
 
   this.previous = function () {
+    this.slides[cursor].style.opacity = 0;
     cursor = Math.max(cursor - 1, 0);
     this.setTrackPosition();
 
     if (slider.currentSlide) {
       this.getCurrentSlide(cursor + 1);
     }
+    this.slides[cursor].style.opacity = 1;
   };
 
   this.setTrackPosition = function () {
