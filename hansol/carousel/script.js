@@ -30,9 +30,9 @@ function Carousel(selector, slider) {
 
   this.buildTrack = function () {
     this.track = document.createElement("div");
-    this.track.style.position = "relative";
+    this.track.style.display = "flex";
+    this.track.style.flexFlow = "column wrap";
     this.track.style.transform = "translate(0px, 0px)";
-    this.track.style.transition = "transform 300ms, height 300ms";
 
     this.setSlidePositions(true);
 
@@ -57,9 +57,12 @@ function Carousel(selector, slider) {
   };
 
   this.setSlidePosition = function (slide, i) {
-    slide.style.position = "absolute";
-    slide.style.top = "0px";
-    slide.style.left = this.slideWidth * i + "px";
+    slide.style.display = "flex";
+    slide.style.flexDirection = "column";
+    slide.style.width = this.slideWidth + "px";
+    slide.style.height = "fit-content";
+    slide.style.transition = "opacity 1s ease-in-out";
+    slide.style.opacity = i === 0 ? 1 : 0;
 
     var boxSizing = css(slide, "box-sizing");
     if (boxSizing === "border-box") {
@@ -107,6 +110,7 @@ function Carousel(selector, slider) {
   //slide 상태
   var cursor = 0;
   this.next = function () {
+    this.slides[cursor].style.opacity = 0;
     cursor =
       cursor === this.slideSize - 1
         ? 0
@@ -117,15 +121,18 @@ function Carousel(selector, slider) {
     if (slider.currentSlide) {
       this.getCurrentSlide(cursor + 1);
     }
+    this.slides[cursor].style.opacity = 1;
   };
 
   this.previous = function () {
+    this.slides[cursor].style.opacity = 0;
     cursor = Math.max(cursor - 1, 0);
     this.setTrackPosition();
 
     if (slider.currentSlide) {
       this.getCurrentSlide(cursor + 1);
     }
+    this.slides[cursor].style.opacity = 1;
   };
 
   this.setTrackPosition = function () {
@@ -151,10 +158,9 @@ function Carousel(selector, slider) {
 
   if (slider.arrows) {
     this.arrows = document.createElement("div");
-    this.arrows.style.position = "absolute";
-    this.arrows.style.width = "64vw";
-    this.arrows.style.top = "50%";
-    this.arrows.style.transform = "translate(0px, -50px)";
+    this.arrows.style.display = "flex";
+    this.arrows.style.justifyContent = "space-between";
+    this.arrows.style.transform = "translate(0px, -300px)";
 
     this.left = document.createElement("button");
     this.left.innerText = "‹";
@@ -195,11 +201,8 @@ function Carousel(selector, slider) {
 
   if (slider.dots) {
     this.dot = document.createElement("div");
-    this.dot.style.textAlign = "center";
-    this.dot.style.width = "64vw";
-    this.dot.style.position = "absolute";
-    this.dot.style.top = "10%";
-
+    this.dot.style.display = "flex";
+    this.dot.style.justifyContent = "center";
     for (var d = 0; d < this.slideSize; d++) {
       this.dot.innerHTML +=
         "<button id='dot" +
