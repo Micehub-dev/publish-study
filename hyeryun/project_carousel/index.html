@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Carousel Example</title>
+
+    <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<body>
+    <div id="list">
+        <div class="item">
+            <figure>
+                <img src="https://picsum.photos/1280/720?random=1" />
+            </figure>
+            <h3>Slide 1</h3>
+        </div>
+        <div class="item" style="box-sizing: border-box;">
+            <figure>
+                <img src="https://picsum.photos/1280/720?random=2" />
+            </figure>
+            <h3>Slide 2</h3>
+            <p>Second Slide</p>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="https://picsum.photos/1280/720?random=3" />
+            </figure>
+            <h3>Slide 3</h3>
+            <p>Third Slide</p>
+            <p>ABCD</p>
+        </div>
+        <div class="item">
+            <figure>
+                <img src="https://picsum.photos/1280/720?random=4" />
+            </figure>
+            <h3>Slide 4</h3>
+        </div>
+    </div>
+
+    
+        <button type="button" class="btn prev" onclick="slide1.previous()">이전</button>
+        <button type="button" class="btn next" onclick="slide1.next()">다음</button>
+        <button type="button" class="btn num" onclick="showSlideNumber()">What is my slide number?</button>
+    </div> -->
+
+    <script src="./script.js"></script>
+    <script>
+        // 슬라이드 대상의 부모, 자동재생(true, false), 자동 재생 초, 모드(normal-가로, vertical-세로, flex-플렉스)
+        var slide1 = new Carousel('#list', false, 2000, 'normal');
+
+        // function showSlideNumber(){
+        //     alert(slide1.getSlideNumber());
+        // }
+    </script>
+</body>
+</html>
