@@ -42,20 +42,14 @@
         </div>
     </div>
 
-    <div style="text-align:center;">
-        <button type="button" onclick="slide1.previous()">Previous</button>
-        <button type="button" onclick="slide1.next()">Next</button>
-        <br>
-        <button type="button" onclick="showSlideNumber()">What is my slide number?</button>
-    </div>
-
     <script src="script.js"></script>
     <script>
-        var slide1 = new Carousel('#list');
-
-        function showSlideNumber(){
-            alert(slide1.getSlideNumber());
-        }
+        var slide1 = new Carousel('#list', {
+            autoplay: true,
+            arrows: true,
+            dots: true,
+            fade: true
+        });
     </script>
 </body>
 </html>

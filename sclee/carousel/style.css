@@ -22,6 +22,9 @@ img {
     margin: 0 auto;
 }
 
+.carousel-context {
+    position:relative;
+}
 .item {
     padding: 3rem;
     font-size: 2rem;
@@ -31,4 +34,46 @@ img {
 }
 .item:nth-child(2n) {
     background-color:rgba(255,255,255,0.5);
+}
+.arrow {
+    position:absolute;
+    top:50%;
+    box-sizing:border-box;
+    width:2.5rem;
+    height:2.5rem;
+    margin-top:-1rem;
+    padding:0.5rem;
+    font-size:1.5rem;
+    border-radius:10rem;
+    color:#000;
+    background-color:rgba(255,255,255,0.7);
+    text-align:center;
+    font-weight:800;
+    line-height:1;
+    cursor: pointer;
+}
+.arrow.prev { left:1.5rem; }
+.arrow.next { right:1.5rem; }
+
+.dot-list {
+    position:absolute;
+    bottom:1rem;
+    left:50%;
+    margin:0;
+    padding:0;
+    list-style:none;
+    transform:translate(-50%, 0);
+}
+.dot {
+    display:inline-block;
+    width:1rem;
+    height:1rem;
+    margin:0.125rem;
+    padding:0;
+    background-color:#fff;
+    opacity:0.75;
+    border-radius:1rem;
+}
+.dot.active {
+    background-color:#0088ff;
 }
