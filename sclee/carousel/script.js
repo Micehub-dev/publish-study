@@ -96,6 +96,11 @@ function Carousel(selector, options){
         } else if(this.options.flexbox === true){
             slide.style['flex-shrink'] = '0';
 
+        } else if(this.options.vertical === true){
+            slide.style.position = "relative";
+            slide.style.top = "0px";
+            slide.style.left = "0px";
+
         }else{
             slide.style.position = "absolute";
             slide.style.top = "0px";
